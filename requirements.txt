@@ -1,4 +1,5 @@
 fastapi[all]
+pydantic
 
 sqlalchemy
 psycopg2-binary
