@@ -1,1 +1,10 @@
 fastapi[all]
+
+sqlalchemy
+psycopg2-binary
+alembic
+
+pandas
+openpyxl
+
+python-multipart
