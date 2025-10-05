@@ -7,7 +7,7 @@ import logging
 
 from app.api.deps import get_database, get_pagination_params
 from app.schemas import license as license_schemas
-from app.repo.license import license_repo
+from app.repository.license import license_repo
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
