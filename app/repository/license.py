@@ -3,10 +3,10 @@ from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from app.models.license import License
 from app.schemas.license import LicenseCreate, LicenseUpdate
-from base import BaseRepo
+from base import BaseRepository
 
 
-class LicenseRepo(BaseRepo[License, LicenseCreate, LicenseUpdate]):
+class LicenseRepository(BaseRepository[License, LicenseCreate, LicenseUpdate]):
     
     def get_by_number(self, db:Session, *, number: str) -> Optional[License]:
         return db.query(License).filter(License.number == number).first()
@@ -34,4 +34,4 @@ class LicenseRepo(BaseRepo[License, LicenseCreate, LicenseUpdate]):
             .all()
         )
     
-license_repo = LicenseRepo(License)
+license_repo = LicenseRepository(License)

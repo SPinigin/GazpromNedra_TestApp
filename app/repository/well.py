@@ -2,9 +2,9 @@ from typing import List
 from sqlalchemy.orm import Session
 from app.models.well import Well
 from app.schemas.well import WellCreate, WellUpdate
-from base import BaseRepo
+from base import BaseRepository
 
-class WellRepo(BaseRepo[Well, WellCreate, WellUpdate]):
+class WellRepository(BaseRepository[Well, WellCreate, WellUpdate]):
 
     def get_by_license(
             self,
@@ -25,4 +25,4 @@ class WellRepo(BaseRepo[Well, WellCreate, WellUpdate]):
     def count_by_license(self, db: Session, *, license_id: int) -> int:
         return db.query(Well).filter(Well.license_id == license_id).count()
 
-well_repo = WellRepo(Well)
+well_repo = WellRepository(Well)
