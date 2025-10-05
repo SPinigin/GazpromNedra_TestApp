@@ -34,4 +34,4 @@ class LicenseRepo(BaseRepo[License, LicenseCreate, LicenseUpdate]):
             .all()
         )
     
-    # license_repo = LicenseRepo(License)
+license_repo = LicenseRepo(License)
