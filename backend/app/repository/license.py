@@ -34,4 +34,4 @@ class LicenseRepository(BaseRepository[License, LicenseCreate, LicenseUpdate]):
             .all()
         )
     
-license_repo = LicenseRepository(License)
+license_repository = LicenseRepository(License)

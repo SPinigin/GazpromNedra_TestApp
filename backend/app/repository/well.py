@@ -25,4 +25,4 @@ class WellRepository(BaseRepository[Well, WellCreate, WellUpdate]):
     def count_by_license(self, db: Session, *, license_id: int) -> int:
         return db.query(Well).filter(Well.license_id == license_id).count()
 
-well_repo = WellRepository(Well)
+well_repository = WellRepository(Well)
