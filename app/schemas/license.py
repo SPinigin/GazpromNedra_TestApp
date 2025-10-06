@@ -2,7 +2,7 @@ from pydantic import BaseModel, validator
 from typing import Optional, List
 from datetime import date
 import re
-from ref import Org, LicenseStatus
+from reference import Org, LicenseStatus
 from well import Well
 
 
