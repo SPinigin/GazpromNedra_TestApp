@@ -1,8 +1,8 @@
 import pandas as pd
 from typing import List
 from io import BytesIO
-from backend.app.models.license import License
-from backend.app.models.well import Well
+from app.models.license import License
+from app.models.well import Well
 
 
 class ExportService:

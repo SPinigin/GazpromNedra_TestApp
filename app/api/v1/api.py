@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.app.api.v1.endpoints import licenses, wells, refs
+from app.api.v1.endpoints import licenses, refs, wells
 
 api_router = APIRouter()
 

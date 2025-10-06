@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, Date, ForeignKey
 from sqlalchemy.orm import relationship
-from backend.app.core.database import Base
+from app.core.database import Base
 
 class License(Base):
     __tablename__ = "licenses"

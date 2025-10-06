@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 import logging
 
-from backend.app.api.deps import get_database
-from backend.app.schemas import license as license_schemas
-from backend.app.repository.license import license_repo
+from app.api.deps import get_database
+from app.schemas import license as license_schemas
+from app.repository.license import license_repo
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

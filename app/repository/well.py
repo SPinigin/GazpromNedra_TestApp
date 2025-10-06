@@ -1,7 +1,7 @@
 from typing import List
 from sqlalchemy.orm import Session
-from backend.app.models.well import Well
-from backend.app.schemas.well import WellCreate, WellUpdate
+from app.models.well import Well
+from app.schemas.well import WellCreate, WellUpdate
 from base import BaseRepository
 
 class WellRepository(BaseRepository[Well, WellCreate, WellUpdate]):

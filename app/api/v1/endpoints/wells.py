@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Response, Query
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
@@ -6,11 +6,11 @@ import math
 import logging
 import io
 
-from backend.app.api.deps import get_database, get_pagination_params
-from backend.app.schemas import well as well_schemas
-from backend.app.repository.well import well_repository
-from backend.app.repository.license import license_repository
-from backend.app.services.export import export_service
+from app.api.deps import get_database, get_pagination_params
+from app.schemas import well as well_schemas
+from app.repository.well import well_repository
+from app.repository.license import license_repository
+from app.services.export import export_service
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

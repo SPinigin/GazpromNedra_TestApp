@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, Float, ForeignKey
 from sqlalchemy.orm import relationship
-from backend.app.core.database import Base
+from app.core.database import Base
 
 class Well(Base):
     __tablename__ = "wells"

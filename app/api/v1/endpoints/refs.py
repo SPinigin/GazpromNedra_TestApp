@@ -3,10 +3,10 @@ from sqlalchemy.orm import Session
 from typing import List
 import logging
 
-from backend.app.api.deps import get_database
-from backend.app.schemas import ref as reference_schemas
-from backend.app.models.ref import Org, LicenseStatus, WellStatus
-from backend.app.repository.base import BaseRepository
+from app.api.deps import get_database
+from app.schemas import ref as reference_schemas
+from app.models.ref import Org, LicenseStatus, WellStatus
+from app.repository.base import BaseRepository
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

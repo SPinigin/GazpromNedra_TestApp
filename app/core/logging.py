@@ -1,4 +1,3 @@
-import logging
 import sys
 from config import settings
 
