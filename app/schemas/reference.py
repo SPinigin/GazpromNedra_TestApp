@@ -9,7 +9,7 @@ class OrgCreate(OrgBase):
     pass
 
 
-class Company(OrgBase):
+class Org(OrgBase):
     id: int
 
     class Config:

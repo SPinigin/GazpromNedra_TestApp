@@ -1,16 +1,21 @@
-from typing import Generator
+from fastapi import Depends
 from sqlalchemy.orm import Session
-from fastapi import Query
 from app.core.database import get_db
-from app.core.config import settings
+from app.repository.license import LicenseRepository
+from app.repository.well import WellRepository
+from app.repository.reference import OrgRepository, LicenseStatusRepository, WellStatusRepository
 
+def get_license_repository(db: Session = Depends(get_db)) -> LicenseRepository:
+    return LicenseRepository(db)
 
-def get_database() -> Generator[Session, None, None]:
-    return get_db()
+def get_well_repository(db: Session = Depends(get_db)) -> WellRepository:
+    return WellRepository(db)
 
-def get_pagination_params(
-    page: int = Query(1, ge=1, description="Номер страницы"),
-    size: int = Query(settings.DEFAULT_PAGE_SIZE, ge=1, le=settings.MAX_PAGE_SIZE, description="Размер страницы")
-) -> dict:
-    skip = (page - 1) * size
-    return {"skip": skip, "limit": size, "page": page, "size": size}
+def get_org_repository(db: Session = Depends(get_db)) -> OrgRepository:
+    return OrgRepository(db)
+
+def get_license_status_repository(db: Session = Depends(get_db)) -> LicenseStatusRepository:
+    return LicenseStatusRepository(db)
+
+def get_well_status_repository(db: Session = Depends(get_db)) -> WellStatusRepository:
+    return WellStatusRepository(db)
