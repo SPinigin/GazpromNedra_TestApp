@@ -1,8 +1,8 @@
 from typing import Generator
 from sqlalchemy.orm import Session
-from fastapi import Depends, HTTPException, Query
-from app.core.database import get_db
-from app.core.config import settings
+from fastapi import Query
+from backend.app.core.database import get_db
+from backend.app.core.config import settings
 
 
 def get_database() -> Generator[Session, None, None]:

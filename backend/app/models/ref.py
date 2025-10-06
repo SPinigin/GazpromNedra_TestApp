@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from app.core.database import Base
+from backend.app.core.database import Base
 
 
 class Org(Base):

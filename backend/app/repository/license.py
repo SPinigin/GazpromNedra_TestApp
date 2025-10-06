@@ -1,8 +1,8 @@
-from typing import List, Optional, Any
+from typing import Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
-from app.models.license import License
-from app.schemas.license import LicenseCreate, LicenseUpdate
+from backend.app.models.license import License
+from backend.app.schemas.license import LicenseCreate, LicenseUpdate
 from base import BaseRepository
 
 
