@@ -1,13 +1,13 @@
 from pydantic import BaseModel
 from datetime import date
 from typing import Optional
-from reference import WellStatus
+from .reference import WellStatus
 
 
 class WellBase(BaseModel):
     name: str
     depth: float
-    drilling_date: date
+    drill_date: date
     license_id: int
     status_id: int
 

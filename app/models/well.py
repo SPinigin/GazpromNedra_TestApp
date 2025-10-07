@@ -13,5 +13,4 @@ class Well(Base):
     license_id = Column(Integer, ForeignKey("licenses.id"), nullable=False)
     status_id = Column(Integer, ForeignKey("well_statuses.id"), nullable=False)
 
-    license = relationship("License", back_populates="wells")
     status = relationship("WellStatus")

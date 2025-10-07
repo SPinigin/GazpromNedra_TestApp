@@ -7,7 +7,7 @@ from app.api.deps import get_org_repository, get_license_status_repository, get_
 router = APIRouter(prefix="/references", tags=["references"])
 
 @router.get("/orgs", response_model=List[Org])
-def get_companies(repo: OrgRepository = Depends(get_org_repository)):
+def get_orgs(repo: OrgRepository = Depends(get_org_repository)):
     return repo.get_all()
 
 @router.post("/orgs", response_model=Org)

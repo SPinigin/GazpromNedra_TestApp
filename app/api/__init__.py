@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from endpoints import licenses_router, wells_router, references_router
+from .endpoints import licenses_router, wells_router, references_router
 
 api_router = APIRouter(prefix="/api/v1")
 

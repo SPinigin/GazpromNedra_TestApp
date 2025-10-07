@@ -13,11 +13,5 @@ class License(Base):
     org_id = Column(Integer, ForeignKey("orgs.id"), nullable=False)
     status_id = Column(Integer, ForeignKey("license_statuses.id"), nullable=False)
 
-    org = relationship("Org", back_populates="licenses")
+    org = relationship("Org")
     status = relationship("LicenseStatus")
-    wells = relationship("Well", back_populates="license")
-
-
-from app.models.reference import Org
-
-Org.licenses = relationship("License", back_populates="org")

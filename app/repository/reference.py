@@ -14,7 +14,7 @@ class OrgRepository:
         return self.db.query(Org).filter(Org.id == org_id).first()
 
     def create(self, org: OrgCreate):
-        db_org = Org(**org.dict())
+        db_org = Org(**org.model_dump())
         self.db.add(db_org)
         self.db.commit()
         self.db.refresh(db_org)
@@ -32,7 +32,7 @@ class LicenseStatusRepository:
         return self.db.query(LicenseStatus).filter(LicenseStatus.id == status_id).first()
 
     def create(self, status: LicenseStatusCreate):
-        db_status = LicenseStatus(**status.dict())
+        db_status = LicenseStatus(**status.model_dump())
         self.db.add(db_status)
         self.db.commit()
         self.db.refresh(db_status)
@@ -50,7 +50,7 @@ class WellStatusRepository:
         return self.db.query(WellStatus).filter(WellStatus.id == status_id).first()
 
     def create(self, status: WellStatusCreate):
-        db_status = WellStatus(**status.dict())
+        db_status = WellStatus(**status.model_dump())
         self.db.add(db_status)
         self.db.commit()
         self.db.refresh(db_status)

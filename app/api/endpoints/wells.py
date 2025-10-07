@@ -14,7 +14,7 @@ router = APIRouter(prefix="/wells", tags=["wells"])
 def get_wells(
         skip: int = Query(0, ge=0, description="Количество записей для пропуска"),
         limit: int = Query(100, ge=1, le=1000, description="Максимальное количество записей"),
-        sort_by: Optional[Literal["id", "name", "depth", "drilling_date"]] = Query(None,
+        sort_by: Optional[Literal["id", "name", "depth", "drill_date"]] = Query(None,
                                                                                    description="Поле для сортировки"),
         order: Optional[Literal["asc", "desc"]] = Query("asc", description="Порядок сортировки"),
         repo: WellRepository = Depends(get_well_repository)
@@ -27,7 +27,7 @@ def get_wells_by_license(
         license_id: int,
         skip: int = Query(0, ge=0, description="Количество записей для пропуска"),
         limit: int = Query(100, ge=1, le=1000, description="Максимальное количество записей"),
-        sort_by: Optional[Literal["id", "name", "depth", "drilling_date"]] = Query(None,
+        sort_by: Optional[Literal["id", "name", "depth", "drill_date"]] = Query(None,
                                                                                    description="Поле для сортировки"),
         order: Optional[Literal["asc", "desc"]] = Query("asc", description="Порядок сортировки"),
         repo: WellRepository = Depends(get_well_repository)
@@ -73,7 +73,7 @@ def export_wells_csv(repo: WellRepository = Depends(get_well_repository)):
             'id': well.id,
             'name': well.name,
             'depth': well.depth,
-            'drill_date': well.drilling_date,
+            'drill_date': well.drill_date,
             'license_id': well.license_id,
             'status': well.status.name if well.status else ''
         })

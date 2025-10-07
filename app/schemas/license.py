@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import date
-from typing import List, Optional
-from reference import Org, LicenseStatus
+from typing import List, Optional, Any
+from .reference import Org, LicenseStatus
 
 
 class LicenseBase(BaseModel):
@@ -32,11 +32,5 @@ class License(LicenseBase):
     class Config:
         from_attributes = True
 
-
 class LicenseWithWells(License):
-    wells: List["Well"] = []
-
-
-from app.schemas.well import Well
-
-LicenseWithWells.model_rebuild()
+    wells: List[Any] = []

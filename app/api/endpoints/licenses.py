@@ -15,7 +15,7 @@ def get_licenses(
         skip: int = Query(0, ge=0, description="Количество записей для пропуска"),
         limit: int = Query(100, ge=1, le=1000, description="Максимальное количество записей"),
         status_id: Optional[int] = Query(None, description="Фильтр по статусу"),
-        sort_by: Optional[Literal["id", "license_number", "issue_date", "expiry_date"]] = Query(None,
+        sort_by: Optional[Literal["id", "license_number", "issue_date", "expire_date"]] = Query(None,
                                                                                                 description="Поле для сортировки"),
         order: Optional[Literal["asc", "desc"]] = Query("asc", description="Порядок сортировки"),
         repo: LicenseRepository = Depends(get_license_repository)
@@ -31,7 +31,7 @@ def search_licenses(
         status_id: Optional[int] = Query(None, description="ID статуса"),
         skip: int = Query(0, ge=0, description="Количество записей для пропуска"),
         limit: int = Query(100, ge=1, le=1000, description="Максимальное количество записей"),
-        sort_by: Optional[Literal["id", "license_number", "issue_date", "expiry_date"]] = Query(None,
+        sort_by: Optional[Literal["id", "license_number", "issue_date", "expire_date"]] = Query(None,
                                                                                                 description="Поле для сортировки"),
         order: Optional[Literal["asc", "desc"]] = Query("asc", description="Порядок сортировки"),
         repo: LicenseRepository = Depends(get_license_repository)
@@ -39,7 +39,7 @@ def search_licenses(
     if license_number:
         license_obj = repo.get_by_number(license_number)
         if not license_obj:
-            raise HTTPException(status_code=404, detail="License not found")
+            raise HTTPException(status_code=404, detail="Лицензия не найдена")
         return license_obj
     elif status_id:
         return repo.get_by_status(status_id, skip, limit, sort_by, order)
@@ -51,7 +51,7 @@ def search_licenses(
 def get_license(license_id: int, repo: LicenseRepository = Depends(get_license_repository)):
     license_obj = repo.get_by_id(license_id)
     if not license_obj:
-        raise HTTPException(status_code=404, detail="License not found")
+        raise HTTPException(status_code=404, detail="Лицензия не найдена")
     return license_obj
 
 
@@ -68,15 +68,15 @@ def update_license(
 ):
     license_obj = repo.update(license_id, license_update)
     if not license_obj:
-        raise HTTPException(status_code=404, detail="License not found")
+        raise HTTPException(status_code=404, detail="Лицензия не найдена")
     return license_obj
 
 
 @router.delete("/{license_id}")
 def delete_license(license_id: int, repo: LicenseRepository = Depends(get_license_repository)):
     if not repo.delete(license_id):
-        raise HTTPException(status_code=404, detail="License not found")
-    return {"message": "License deleted successfully"}
+        raise HTTPException(status_code=404, detail="Лицензия не найдена")
+    return {"message": "Лицензия успешно удалена"}
 
 
 @router.get("/export/csv")
@@ -89,7 +89,7 @@ def export_licenses_csv(repo: LicenseRepository = Depends(get_license_repository
             'id': license_obj.id,
             'license_number': license_obj.license_number,
             'issue_date': license_obj.issue_date,
-            'expire_date': license_obj.expiry_date,
+            'expire_date': license_obj.expire_date,
             'org': license_obj.org.name if license_obj.org else '',
             'status': license_obj.status.name if license_obj.status else ''
         })
@@ -113,12 +113,12 @@ def export_licenses_xlsx(repo: LicenseRepository = Depends(get_license_repositor
     data = []
     for license_obj in licenses:
         data.append({
-            'ID': license_obj.id,
-            'License Number': license_obj.license_number,
-            'Issue Date': license_obj.issue_date,
-            'Expire Date': license_obj.expiry_date,
-            'Org': license_obj.org.name if license_obj.org else '',
-            'Status': license_obj.status.name if license_obj.status else ''
+            'id': license_obj.id,
+            'license_number': license_obj.license_number,
+            'issue_date': license_obj.issue_date,
+            'expire_date': license_obj.expire_date,
+            'org': license_obj.org.name if license_obj.org else '',
+            'status': license_obj.status.name if license_obj.status else ''
         })
 
     df = pd.DataFrame(data)
