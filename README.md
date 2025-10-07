@@ -98,7 +98,7 @@ docker-compose exec app python init_data.py # Инициализация дан�
 ```
 
 ## 🧪 ТЕСТИРОВАНИЕ
-Swagger UI доступен по адресу: [localhost](http://localhost:8000/docs)
+Swagger UI: [localhost](http://localhost:8000/docs)
 
 ## 📈 СПРАВОЧНЫЕ ДАННЫЕ
 1. Предприятия:
