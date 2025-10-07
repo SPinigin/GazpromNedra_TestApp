@@ -98,6 +98,7 @@ docker-compose exec app python init_data.py # Инициализация дан�
 ```
 
 ## 🧪 ТЕСТИРОВАНИЕ
+
 Swagger UI: [localhost](http://localhost:8000/docs)
 
 ## 📈 СПРАВОЧНЫЕ ДАННЫЕ
