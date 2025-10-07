@@ -67,11 +67,12 @@ REST-интерфейс для централизованного управле
 
 8. Запуск приложения
 
-`docker-compose -f docker-compose.dev.yml down # Остановка dev БД`
+```bash
+docker-compose -f docker-compose.dev.yml down # Остановка dev БД
+```
+docker-compose up --build # Запуск приложения
 
-`docker-compose up --build # Запуск приложения`
-
-`docker-compose exec app python init_data.py # Инициализация данных`
+docker-compose exec app python init_data.py # Инициализация данных
 
 ## 🧪 ТЕСТИРОВАНИЕ (Swagger UI):
 http://localhost:8000/docs
