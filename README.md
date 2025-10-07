@@ -27,36 +27,43 @@ REST-интерфейс для централизованного управле
 
 ## 🚀 УСТАНОВКА И ЗАПУСК (через терминал)
 1. Клонирование репозитория
-`git clone https://github.com/SPinigin/GazpromNedra_TestApp
-cd GazpromNedra_TestApp`
+`git clone https://github.com/SPinigin/GazpromNedra_TestApp`
+`cd GazpromNedra_TestApp`
 
 2. Установка зависимостей
-`pip install --upgrade pip
-pip install -r requirements.txt`
+
+`pip install --upgrade pip`
+`pip install -r requirements.txt`
 
 3. Docker
-`docker --version
-docker-compose --version`
+
+`docker --version`
+`docker-compose --version`
 
 4. Настройка окружения
+
 `cp .env.example .env`
 
 5. Запуск БД для разработки
-`docker-compose -f docker-compose.dev.yml up -d db # Запуск PostgreSQL в контейнере
-docker-compose -f docker-compose.dev.yml ps # Проверка запуска БД`
+
+`docker-compose -f docker-compose.dev.yml up -d db # Запуск PostgreSQL в контейнере`
+`docker-compose -f docker-compose.dev.yml ps # Проверка запуска БД`
 
 6. Создание миграций
-`alembic revision --autogenerate -m "Initial migration" # Создание миграции
-alembic upgrade head # Применение миграции
-docker-compose -f docker-compose.dev.yml exec db psql -U postgres -d license_db -c "\dt" # Проверка таблиц в БД`
+
+`alembic revision --autogenerate -m "Initial migration" # Создание миграции`
+`alembic upgrade head # Применение миграции`
+`docker-compose -f docker-compose.dev.yml exec db psql -U postgres -d license_db -c "\dt" # Проверка таблиц в БД`
 
 7. Инициализация данных
+
 `python init_data.py # Скрипт инициализации`
 
 8. Запуск приложения
-`docker-compose -f docker-compose.dev.yml down # Остановка dev БД
-docker-compose up --build # Запуск приложения
-docker-compose exec app python init_data.py # Инициализация данных`
+
+`docker-compose -f docker-compose.dev.yml down # Остановка dev БД`
+`docker-compose up --build # Запуск приложения`
+`docker-compose exec app python init_data.py # Инициализация данных`
 
 ## 🧪 ТЕСТИРОВАНИЕ (Swagger UI):
 http://localhost:8000/docs
