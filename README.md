@@ -102,7 +102,7 @@ http://localhost:8000/docs
 ## 🧪 ТЕСТОВЫЕ ДАННЫЕ
 
 ## 📈 Лицензии
-
+```json
 {
   "license_number": "ГС 12345 МО",
   "issue_date": "2023-01-15",
@@ -110,6 +110,9 @@ http://localhost:8000/docs
   "org_id": 1,
   "status_id": 1
 }
+```
+
+```json
 {
   "license_number": "НФ 67890 ТТ",
   "issue_date": "2022-06-10",
@@ -117,6 +120,9 @@ http://localhost:8000/docs
   "org_id": 2,
   "status_id": 1
 }
+```
+
+```json
 {
   "license_number": "РЗ 11111 СП",
   "issue_date": "2021-03-20",
@@ -124,6 +130,9 @@ http://localhost:8000/docs
   "org_id": 3,
   "status_id": 2
 }
+```
+
+```json
 {
   "license_number": "РЗ 11111 СП",
   "issue_date": "2021-03-20",
@@ -131,6 +140,9 @@ http://localhost:8000/docs
   "org_id": 3,
   "status_id": 2
 }
+```
+
+```json
 {
   "license_number": "АР 99999 КМ",
   "issue_date": "2018-12-01",
@@ -138,6 +150,9 @@ http://localhost:8000/docs
   "org_id": 4,
   "status_id": 3
 }
+```
+
+```json
 {
   "license_number": "ЛК 55555 БШ",
   "issue_date": "2024-02-14",
@@ -145,6 +160,18 @@ http://localhost:8000/docs
   "org_id": 3,
   "status_id": 1
 }
+```
+
+```json
+
+```
+
+```json
+
+```
+
+
+
 
 ## 📈 Скважины
 
