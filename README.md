@@ -102,6 +102,7 @@ http://localhost:8000/docs
 ## 🧪 ТЕСТОВЫЕ ДАННЫЕ
 
 ## 📈 Лицензии
+
 ```json
 {
   "license_number": "ГС 12345 МО",
@@ -111,7 +112,6 @@ http://localhost:8000/docs
   "status_id": 1
 }
 ```
-
 ```json
 {
   "license_number": "НФ 67890 ТТ",
@@ -121,7 +121,6 @@ http://localhost:8000/docs
   "status_id": 1
 }
 ```
-
 ```json
 {
   "license_number": "РЗ 11111 СП",
@@ -131,7 +130,6 @@ http://localhost:8000/docs
   "status_id": 2
 }
 ```
-
 ```json
 {
   "license_number": "РЗ 11111 СП",
@@ -141,7 +139,6 @@ http://localhost:8000/docs
   "status_id": 2
 }
 ```
-
 ```json
 {
   "license_number": "АР 99999 КМ",
@@ -151,7 +148,6 @@ http://localhost:8000/docs
   "status_id": 3
 }
 ```
-
 ```json
 {
   "license_number": "ЛК 55555 БШ",
@@ -162,19 +158,9 @@ http://localhost:8000/docs
 }
 ```
 
-```json
-
-```
-
-```json
-
-```
-
-
-
-
 ## 📈 Скважины
 
+```json
 {
   "name": "86П",
   "depth": 3500.75,
@@ -182,6 +168,8 @@ http://localhost:8000/docs
   "license_id": 1,
   "status_id": 2
 }
+```
+```json
 {
   "name": "70Р",
   "depth": 1250.0,
@@ -189,6 +177,8 @@ http://localhost:8000/docs
   "license_id": 2,
   "status_id": 1
 }
+```
+```json
 {
   "name": "1222БИС",
   "depth": 4200.5,
@@ -196,6 +186,8 @@ http://localhost:8000/docs
   "license_id": 1,
   "status_id": 2
 }
+```
+```json
 {
   "name": "202",
   "depth": 2800.25,
@@ -203,6 +195,8 @@ http://localhost:8000/docs
   "license_id": 3,
   "status_id": 3
 }
+```
+```json
 {
   "name": "605Г",
   "depth": 1500.0,
@@ -210,6 +204,8 @@ http://localhost:8000/docs
   "license_id": 4,
   "status_id": 4
 }
+```
+```json
 {
   "name": "Тест",
   "depth": 5000.0,
@@ -217,3 +213,4 @@ http://localhost:8000/docs
   "license_id": 2,
   "status_id": 5
 }
+```
