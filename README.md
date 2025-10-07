@@ -27,52 +27,75 @@ REST-интерфейс для централизованного управле
 
 ## 🚀 УСТАНОВКА И ЗАПУСК (через терминал)
 1. Клонирование репозитория
-`git clone https://github.com/SPinigin/GazpromNedra_TestApp`
 
-`cd GazpromNedra_TestApp`
+```bash
+git clone https://github.com/SPinigin/GazpromNedra_TestApp
+```
+```bash
+cd GazpromNedra_TestApp
+```
 
 2. Установка зависимостей
 
-`pip install --upgrade pip`
-
-`pip install -r requirements.txt`
+```bash
+pip install --upgrade pip
+```
+```bash
+pip install -r requirements.txt
+```
 
 3. Docker
 
-`docker --version`
-
-`docker-compose --version`
+```bash
+docker --version
+```
+```bash
+docker-compose --version
+```
 
 4. Настройка окружения
 
-`cp .env.example .env`
+```bash
+cp .env.example .env
+```
 
 5. Запуск БД для разработки
 
-`docker-compose -f docker-compose.dev.yml up -d db # Запуск PostgreSQL в контейнере`
-
-`docker-compose -f docker-compose.dev.yml ps # Проверка запуска БД`
+```bash
+docker-compose -f docker-compose.dev.yml up -d db # Запуск PostgreSQL в контейнере
+```
+```bash
+docker-compose -f docker-compose.dev.yml ps # Проверка запуска БД
+```
 
 6. Создание миграций
 
-`alembic revision --autogenerate -m "Initial migration" # Создание миграции`
-
-`alembic upgrade head # Применение миграции`
-
-`docker-compose -f docker-compose.dev.yml exec db psql -U postgres -d license_db -c "\dt" # Проверка таблиц в БД`
+```bash
+alembic revision --autogenerate -m "Initial migration" # Создание миграции
+```
+```bash
+alembic upgrade head # Применение миграции
+```
+```bash
+docker-compose -f docker-compose.dev.yml exec db psql -U postgres -d license_db -c "\dt" # Проверка таблиц в БД
+```
 
 7. Инициализация данных
-
-`python init_data.py # Скрипт инициализации`
+```bash
+python init_data.py # Скрипт инициализации
+```
 
 8. Запуск приложения
 
 ```bash
 docker-compose -f docker-compose.dev.yml down # Остановка dev БД
 ```
+```bash
 docker-compose up --build # Запуск приложения
-
+```
+```bash
 docker-compose exec app python init_data.py # Инициализация данных
+```
 
 ## 🧪 ТЕСТИРОВАНИЕ (Swagger UI):
 http://localhost:8000/docs
