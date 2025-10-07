@@ -1,7 +1,9 @@
-📋 ОПИСАНИЕ
+# GAZPROM-NEDRA TestApp
+
+## 📋 ОПИСАНИЕ
 REST-интерфейс для централизованного управления данными в сфере недропользования.
 
-✨ ФУНКЦИОНАЛ
+## ✨ ФУНКЦИОНАЛ
 ✅ Управление лицензиями - CRUD операции, поиск по номеру и статусу
 ✅ Управление скважинами - CRUD операции, получение скважин по лицензии
 ✅ Справочники - организации, статусы лицензий и скважин
@@ -10,20 +12,20 @@ REST-интерфейс для централизованного управле
 ✅ Автоматическая документация API (Swagger UI)
 ✅ Логирование
 
-🛠️ ТЕХНОЛОГИИ
+## 🛠️ ТЕХНОЛОГИИ
 Backend: FastAPI, SQLAlchemy, Alembic
 Database: PostgreSQL
 Validation: Pydantic
 Export: Pandas, openpyxl
 Containerization: Docker, Docker Compose
 
-📋 ТРЕБОВАНИЯ К СИСТЕМЕ
+## 📋 ТРЕБОВАНИЯ К СИСТЕМЕ
 Python 3.11+
 Docker Desktop
 PyCharm
 Git
 
-🚀 УСТАНОВКА И ЗАПУСК (через терминал)
+## 🚀 УСТАНОВКА И ЗАПУСК (через терминал)
 ✅ Клонирование репозитория
 git clone https://github.com/SPinigin/GazpromNedra_TestApp
 cd GazpromNedra_TestApp
@@ -56,10 +58,10 @@ docker-compose -f docker-compose.dev.yml down # Остановка dev БД
 docker-compose up --build # Запуск приложения
 docker-compose exec app python init_data.py # Инициализация данных
 
-🧪 ТЕСТИРОВАНИЕ (Swagger UI):
+## 🧪 ТЕСТИРОВАНИЕ (Swagger UI):
 http://localhost:8000/docs
 
-📈 СПРАВОЧНЫЕ ДАННЫЕ
+## 📈 СПРАВОЧНЫЕ ДАННЫЕ
 После инициализации создаются:
 Предприятия:
 
@@ -83,9 +85,9 @@ http://localhost:8000/docs
 ликвидирована (ID: 4)
 в испытании (ID: 5)
 
-🧪 ТЕСТОВЫЕ ДАННЫЕ:
+## 🧪 ТЕСТОВЫЕ ДАННЫЕ:
 
-📈 Лицензии
+## 📈 Лицензии
 
 {
   "license_number": "ГС 12345 МО",
@@ -130,7 +132,7 @@ http://localhost:8000/docs
   "status_id": 1
 }
 
-📈 Скважины
+## 📈 Скважины
 
 {
   "name": "86П",
