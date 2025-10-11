@@ -1,7 +1,7 @@
+import uuid
 from sqlalchemy.orm import Session
 from app.models.reference import Org, LicenseStatus, WellStatus
 from app.schemas.reference import OrgCreate, LicenseStatusCreate, WellStatusCreate
-
 
 class OrgRepository:
     def __init__(self, db: Session):
@@ -10,7 +10,7 @@ class OrgRepository:
     def get_all(self):
         return self.db.query(Org).all()
 
-    def get_by_id(self, org_id: int):
+    def get_by_id(self, org_id: uuid.UUID):
         return self.db.query(Org).filter(Org.id == org_id).first()
 
     def create(self, org: OrgCreate):
@@ -20,7 +20,6 @@ class OrgRepository:
         self.db.refresh(db_org)
         return db_org
 
-
 class LicenseStatusRepository:
     def __init__(self, db: Session):
         self.db = db
@@ -28,7 +27,7 @@ class LicenseStatusRepository:
     def get_all(self):
         return self.db.query(LicenseStatus).all()
 
-    def get_by_id(self, status_id: int):
+    def get_by_id(self, status_id: uuid.UUID):
         return self.db.query(LicenseStatus).filter(LicenseStatus.id == status_id).first()
 
     def create(self, status: LicenseStatusCreate):
@@ -38,7 +37,6 @@ class LicenseStatusRepository:
         self.db.refresh(db_status)
         return db_status
 
-
 class WellStatusRepository:
     def __init__(self, db: Session):
         self.db = db
@@ -46,7 +44,7 @@ class WellStatusRepository:
     def get_all(self):
         return self.db.query(WellStatus).all()
 
-    def get_by_id(self, status_id: int):
+    def get_by_id(self, status_id: uuid.UUID):
         return self.db.query(WellStatus).filter(WellStatus.id == status_id).first()
 
     def create(self, status: WellStatusCreate):

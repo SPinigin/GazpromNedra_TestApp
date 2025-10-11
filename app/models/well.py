@@ -1,16 +1,18 @@
-from sqlalchemy import Column, Integer, String, Date, Float, ForeignKey
-from sqlalchemy.orm import relationship
+import uuid
+from datetime import date
+from sqlalchemy import String, Date, Float, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.database import Base
 
 
 class Well(Base):
     __tablename__ = "wells"
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False, index=True)
-    depth = Column(Float, nullable=False)
-    drill_date = Column(Date, nullable=False)
-    license_id = Column(Integer, ForeignKey("licenses.id"), nullable=False)
-    status_id = Column(Integer, ForeignKey("well_statuses.id"), nullable=False)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4, index=True)
+    name: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
+    depth: Mapped[float] = mapped_column(Float, nullable=False)
+    drill_date: Mapped[date] = mapped_column(Date, nullable=False)
+    license_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("licenses.id"), nullable=False)
+    status_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("well_statuses.id"), nullable=False)
 
-    status = relationship("WellStatus")
+    status: Mapped["WellStatus"] = relationship()

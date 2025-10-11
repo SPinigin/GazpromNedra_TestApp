@@ -1,3 +1,5 @@
+import uuid
+
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import asc, desc
 from app.models.well import Well
@@ -23,12 +25,12 @@ class WellRepository:
 
         return query.offset(skip).limit(limit).all()
 
-    def get_by_id(self, well_id: int):
+    def get_by_id(self, well_id: uuid.UUID):
         return (self.db.query(Well)
                 .options(joinedload(Well.status))
                 .filter(Well.id == well_id).first())
 
-    def get_by_license_id(self, license_id: int, skip: int = 0, limit: int = 100, sort_by: Optional[str] = None,
+    def get_by_license_id(self, license_id: uuid.UUID, skip: int = 0, limit: int = 100, sort_by: Optional[str] = None,
                           order: str = "asc"):
         query = (self.db.query(Well)
                  .options(joinedload(Well.status))
@@ -51,7 +53,7 @@ class WellRepository:
         self.db.refresh(db_well)
         return self.get_by_id(db_well.id)
 
-    def update(self, well_id: int, well_update: WellUpdate):
+    def update(self, well_id: uuid.UUID, well_update: WellUpdate):
         db_well = self.db.query(Well).filter(Well.id == well_id).first()
         if db_well:
             update_data = well_update.dict(exclude_unset=True)
@@ -62,7 +64,7 @@ class WellRepository:
             return self.get_by_id(db_well.id)
         return None
 
-    def delete(self, well_id: int):
+    def delete(self, well_id: uuid.UUID):
         db_well = self.db.query(Well).filter(Well.id == well_id).first()
         if db_well:
             self.db.delete(db_well)
