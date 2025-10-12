@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+import uuid
+from fastapi import APIRouter, Depends, HTTPException, Query, Path
 from fastapi.responses import StreamingResponse
-from typing import List, Optional, Literal
+from typing import List, Optional, Literal, Annotated
 from app.schemas.license import License, LicenseCreate, LicenseUpdate, LicenseWithWells
 from app.repository.license import LicenseRepository
 from app.api.deps import get_license_repository
@@ -9,60 +10,58 @@ import io
 
 router = APIRouter(prefix="/licenses", tags=["licenses"])
 
-
 @router.get("/", response_model=List[License])
 def get_licenses(
-        skip: int = Query(0, ge=0, description="Количество записей для пропуска"),
-        limit: int = Query(100, ge=1, le=1000, description="Максимальное количество записей"),
-        status_id: Optional[int] = Query(None, description="Фильтр по статусу"),
-        sort_by: Optional[Literal["id", "license_number", "issue_date", "expire_date"]] = Query(None,
-                                                                                                description="Поле для сортировки"),
-        order: Optional[Literal["asc", "desc"]] = Query("asc", description="Порядок сортировки"),
+        skip: Annotated[int, Query(0, ge=0, description="Количество записей для пропуска")] = 0,
+        limit: Annotated[int, Query(100, ge=1, le=1000, description="Максимальное количество записей")] = 100,
+        status_id: Annotated[Optional[uuid.UUID], Query(None, description="Фильтр по статусу")] = None,
+        sort_by: Annotated[Optional[Literal["id", "license_number", "issue_date", "expire_date"]], Query(
+                                                                                                description="Поле для сортировки")] = None,
+        order: Annotated[Literal["asc", "desc"], Query("asc", description="Порядок сортировки")] = "asc",
         repo: LicenseRepository = Depends(get_license_repository)
 ):
     if status_id:
         return repo.get_by_status(status_id, skip, limit, sort_by, order)
     return repo.get_all(skip, limit, sort_by, order)
 
-
-@router.get("/search")
-def search_licenses(
-        license_number: Optional[str] = Query(None, description="Номер лицензии"),
-        status_id: Optional[int] = Query(None, description="ID статуса"),
-        skip: int = Query(0, ge=0, description="Количество записей для пропуска"),
-        limit: int = Query(100, ge=1, le=1000, description="Максимальное количество записей"),
-        sort_by: Optional[Literal["id", "license_number", "issue_date", "expire_date"]] = Query(None,
-                                                                                                description="Поле для сортировки"),
-        order: Optional[Literal["asc", "desc"]] = Query("asc", description="Порядок сортировки"),
-        repo: LicenseRepository = Depends(get_license_repository)
-):
-    if license_number:
-        license_obj = repo.get_by_number(license_number)
-        if not license_obj:
-            raise HTTPException(status_code=404, detail="Лицензия не найдена")
-        return license_obj
-    elif status_id:
-        return repo.get_by_status(status_id, skip, limit, sort_by, order)
-    else:
-        return repo.get_all(skip, limit, sort_by, order)
-
+# @router.get("/search")
+# def search_licenses(
+#         license_number: Optional[str] = Query(None, description="Номер лицензии"),
+#         status_id: Optional[int] = Query(None, description="ID статуса"),
+#         skip: int = Query(0, ge=0, description="Количество записей для пропуска"),
+#         limit: int = Query(100, ge=1, le=1000, description="Максимальное количество записей"),
+#         sort_by: Optional[Literal["id", "license_number", "issue_date", "expire_date"]] = Query(None,
+#                                                                                                 description="Поле для сортировки"),
+#         order: Optional[Literal["asc", "desc"]] = Query("asc", description="Порядок сортировки"),
+#         repo: LicenseRepository = Depends(get_license_repository)
+# ):
+#     if license_number:
+#         license_obj = repo.get_by_number(license_number)
+#         if not license_obj:
+#             raise HTTPException(status_code=404, detail="Лицензия не найдена")
+#         return license_obj
+#     elif status_id:
+#         return repo.get_by_status(status_id, skip, limit, sort_by, order)
+#     else:
+#         return repo.get_all(skip, limit, sort_by, order)
 
 @router.get("/{license_id}", response_model=LicenseWithWells)
-def get_license(license_id: int, repo: LicenseRepository = Depends(get_license_repository)):
+def get_license(
+        license_id: Annotated[uuid.UUID, Path(description="ID лицензии")],
+        repo: LicenseRepository = Depends(get_license_repository)
+):
     license_obj = repo.get_by_id(license_id)
     if not license_obj:
         raise HTTPException(status_code=404, detail="Лицензия не найдена")
     return license_obj
 
-
 @router.post("/", response_model=License)
 def create_license(license: LicenseCreate, repo: LicenseRepository = Depends(get_license_repository)):
     return repo.create(license)
 
-
 @router.put("/{license_id}", response_model=License)
 def update_license(
-        license_id: int,
+        license_id: Annotated[uuid.UUID, Path(description="ID лицензии")],
         license_update: LicenseUpdate,
         repo: LicenseRepository = Depends(get_license_repository)
 ):
@@ -71,13 +70,14 @@ def update_license(
         raise HTTPException(status_code=404, detail="Лицензия не найдена")
     return license_obj
 
-
 @router.delete("/{license_id}")
-def delete_license(license_id: int, repo: LicenseRepository = Depends(get_license_repository)):
+def delete_license(
+        license_id: Annotated[uuid.UUID, Path(description="ID лицензии")],
+        repo: LicenseRepository = Depends(get_license_repository)
+):
     if not repo.delete(license_id):
         raise HTTPException(status_code=404, detail="Лицензия не найдена")
     return {"message": "Лицензия успешно удалена"}
-
 
 @router.get("/export/csv")
 def export_licenses_csv(repo: LicenseRepository = Depends(get_license_repository)):
@@ -104,7 +104,6 @@ def export_licenses_csv(repo: LicenseRepository = Depends(get_license_repository
     )
     response.headers["Content-Disposition"] = "attachment; filename=licenses.csv"
     return response
-
 
 @router.get("/export/xlsx")
 def export_licenses_xlsx(repo: LicenseRepository = Depends(get_license_repository)):
