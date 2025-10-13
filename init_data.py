@@ -1,12 +1,10 @@
 import sys
 import os
-
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from sqlalchemy.orm import Session
 from app.core.database import SessionLocal, engine, Base
 from app.models import Org, LicenseStatus, WellStatus
-
 
 def create_initial_data():
     Base.metadata.create_all(bind=engine)
@@ -66,7 +64,6 @@ def create_initial_data():
         raise
     finally:
         db.close()
-
 
 if __name__ == "__main__":
     create_initial_data()
